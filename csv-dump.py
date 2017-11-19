@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-経済学部の授業スクレイピングした
+授業スクレイピングした
 """
 import requests
 from bs4 import BeautifulSoup

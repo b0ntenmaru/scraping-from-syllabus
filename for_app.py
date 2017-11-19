@@ -2,26 +2,24 @@
 import requests
 from bs4 import BeautifulSoup
 
-
-# 引数でlinkを渡す
-# detailページに入って、映画情報pをとってくる
-def scraping_message(link):
-    url = requests.get(link)
-    soup = BeautifulSoup(url.content, 'html.parser')
-    message = soup.select('.entry-content p')
-    return message
+# セッション関数でselect入力を保持する
+s = requests.Session()
+r = s.post(
+    'https://www.meijo-u.ac.jp/academics/syllabus/find/',
+    data = {
+        'data[find][fiscal_year]': ['2017'],
+        'data[find][faculty_id]': ['119']
+    }
+)
 
 # rootのページからdetailページのhrefを取り出してlistに保存する
-url = requests.get('http://review-movie.herokuapp.com/')
-soup = BeautifulSoup(url.content, 'html.parser')
-title_atags = soup.select('.entry-title a')
+soup = BeautifulSoup(r.content, 'html.parser')
+# subject_nameにaタグ１行が入ってる
+subject_name = soup.select('.normal td a')
 
-# リストlinksにtitleのhrefをappendする
+# リストlinksにsubject_nameのhrefを格納する
 links = []
-for i in title_atags:
-    links.append(i['href'])
-
-# forでlinksリスト回してscraping_messageでリンク先のmessageのurl取ってくる
-for link in links:
-    # print(type(link))
-    print(scraping_message('http://review-movie.herokuapp.com/' + link + '\n'))
+for name in subject_name:
+    href = name['href']
+    data = href[24:]
+    links.append(data)

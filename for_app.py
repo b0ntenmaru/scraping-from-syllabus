@@ -12,6 +12,9 @@ r = s.post(
     }
 )
 
+def scraping_data(link):
+    pass
+
 # rootのページからdetailページのhrefを取り出してlistに保存する
 soup = BeautifulSoup(r.content, 'html.parser')
 # subject_nameにaタグ１行が入ってる
@@ -23,3 +26,6 @@ for name in subject_name:
     href = name['href']
     data = href[24:]
     links.append(data)
+
+for link in links:
+    print(scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n'))

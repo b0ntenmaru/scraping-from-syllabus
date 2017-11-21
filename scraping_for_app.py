@@ -12,8 +12,15 @@ r = s.post(
     }
 )
 
+# detailページに入って書く
 def scraping_data(link):
-    pass
+    url = requests.get(link)
+    soup = BeautifulSoup(url.content, 'html.parser')
+    table= soup.select('table')
+    # return tr[13].text #[13] [16]
+    table = table[1]
+    tr = table.select('tr')
+    print(tr[7].td.text)
 
 # rootのページからdetailページのhrefを取り出してlistに保存する
 soup = BeautifulSoup(r.content, 'html.parser')
@@ -29,3 +36,4 @@ for name in subject_name:
 
 for link in links:
     print(scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n'))
+    # print(link)　# デバッグ用 何がlinkにはいってるか

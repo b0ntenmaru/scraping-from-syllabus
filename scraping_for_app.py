@@ -28,5 +28,8 @@ for name in subject_name:
 
 # scraping_data関数に評価基準を返してもらう
 for link in links:
-    print(scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n'))
+    name, evaluation = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n')
+    print(name)
+    print(evaluation)
+    # print(scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n'))
     # print(link)　# デバッグ用 何がlinkにはいってるか

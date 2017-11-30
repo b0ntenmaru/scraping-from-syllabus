@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
+from get_selector import scraping_data
 
 # セッション関数でselect入力を保持する
 s = requests.Session()
@@ -12,16 +13,7 @@ r = s.post(
     }
 )
 
-# detailページに入って書く
-def scraping_data(link):
-    url = requests.get(link)
-    soup = BeautifulSoup(url.content, 'html.parser')
-    table= soup.select('table')
-    # return tr[13].text #[13] [16]
-    table = table[1]
-    tr = table.select('tr')
-    print(tr[7].td.text)
-
+#
 # rootのページからdetailページのhrefを取り出してlistに保存する
 soup = BeautifulSoup(r.content, 'html.parser')
 # subject_nameにaタグ１行が入ってる

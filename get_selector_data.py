@@ -8,16 +8,16 @@ def scraping_data(link):
     soup = BeautifulSoup(url.content, 'html.parser')
 
     # 授業名を取得する
-    tbody = soup.select('tr')
-    class_work_name = tbody[0]
-    class_work_name = class_work_name.td.text
+    # tbody = soup.select('tr')
+    # class_work_name = tbody[0].td.text
+    # class_work_name = class_work_name.td.text
+
     # 成績評価方法を取得
     table= soup.select('table')
     table = table[1]
-    class_work_evaluation = table.select('tr')
-    class_work_evaluation = class_work_evaluation[7].td.text
 
-    # 授業名と成績評価方法を返す
-    # class_work_name => 授業名
-    # class_work_evaluation => 成績評価方法
-    return (class_work_name, class_work_evaluation)
+    try:
+        subject_eval = table.select('tr')[7].td.text
+        return (subject_eval)
+    except:
+        print('エラー')

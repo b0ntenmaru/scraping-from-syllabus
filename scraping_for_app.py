@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 from get_selector_data import scraping_data
+import json
 
 # セッション関数でselect入力を保持する
 s = requests.Session()
@@ -26,10 +27,16 @@ for name in subject_name:
     data = href[24:]
     links.append(data)
 
-# scraping_data関数に評価基準を返してもらう
+# scraping_data関数でインスタンスを作る
+
+name_list = []
+subject_eval_list = []
 for link in links:
-    name, evaluation = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n')
-    print(name)
-    print(evaluation)
-    # print(scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link + '\n'))
-    # print(link)　# デバッグ用 何がlinkにはいってるか
+    subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
+    # エラー吐き出してるの社会フィールドワーク７個目
+    print(subject_eval)
+
+    # nameとsubject_evalをリストに格納する
+    # subject_eval_list.append(subject_eval)
+
+print('完了')

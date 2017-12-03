@@ -2,7 +2,8 @@
 import requests
 from bs4 import BeautifulSoup
 from get_selector_data import scraping_data
-import json
+import csv
+from time import sleep
 
 # セッション関数でselect入力を保持する
 s = requests.Session()
@@ -30,13 +31,20 @@ for name in subject_name:
 # scraping_data関数でインスタンスを作る
 
 name_list = []
-subject_eval_list = []
+eval_list = []
 for link in links:
-    subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
-    # エラー吐き出してるの社会フィールドワーク７個目
-    print(subject_eval)
+    name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
 
     # nameとsubject_evalをリストに格納する
-    # subject_eval_list.append(subject_eval)
+    name_list.append(name)
+    eval_list.append(subject_eval)
+    sleep(3)
+    print(name + '完了')
+with open('economics.csv', 'a') as f:
+    length = len(name_list)
+    for i in range(length):
+        f.write(name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
+print(len(name_list))
+print(len(eval_list))

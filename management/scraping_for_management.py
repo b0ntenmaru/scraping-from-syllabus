@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import requests
-from bs4 import BeautifulSoup
-from get_selector_data import scraping_data
 import csv
 from time import sleep
+from bs4 import BeautifulSoup
+import os, sys
+sys.path.append('../modules')
+from get_selector_data import scraping_data
+
 
 # セッション関数でselect入力を保持する
 s = requests.Session()
@@ -11,7 +14,7 @@ r = s.post(
     'https://www.meijo-u.ac.jp/academics/syllabus/find/',
     data = {
         'data[find][fiscal_year]': ['2017'],
-        'data[find][faculty_id]': ['119']
+        'data[find][faculty_id]': ['118']
     }
 )
 
@@ -38,7 +41,7 @@ for link in links:
     # nameとsubject_evalをリストに格納する
     name_list.append(name)
     eval_list.append(subject_eval)
-    sleep(3)
+    sleep(2)
     print(name + '完了')
 with open('economics.csv', 'a') as f:
     length = len(name_list)

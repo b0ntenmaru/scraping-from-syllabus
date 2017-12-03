@@ -4,7 +4,7 @@ import csv
 from time import sleep
 from bs4 import BeautifulSoup
 import os, sys
-sys.path.append('../modules')
+sys.path.append('../../modules')
 from get_selector_data import scraping_data
 
 

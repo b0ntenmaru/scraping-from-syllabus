@@ -14,6 +14,7 @@ r = s.post(
     'https://www.meijo-u.ac.jp/academics/syllabus/find/',
     data = {
         'data[find][fiscal_year]': ['2017'],
+        #経営学部のID 118
         'data[find][faculty_id]': ['118']
     }
 )

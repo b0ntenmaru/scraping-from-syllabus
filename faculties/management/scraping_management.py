@@ -4,7 +4,7 @@ import csv
 from time import sleep
 from bs4 import BeautifulSoup
 import os, sys
-sys.path.append('../modules')
+sys.path.append('../../modules')
 from get_selector_data import scraping_data
 
 
@@ -44,10 +44,10 @@ for link in links:
     eval_list.append(subject_eval)
     sleep(2)
     print(name + '完了')
-with open('economics.csv', 'a') as f:
+with open('management.csv', 'a') as f:
     length = len(name_list)
     for i in range(length):
-        f.write(name_list[i] + ',' + str(eval_list[i]) + '\n')
+        f.write(',hiroaki' + name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
 print(len(name_list))

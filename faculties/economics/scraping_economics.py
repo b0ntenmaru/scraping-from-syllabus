@@ -46,7 +46,7 @@ for link in links:
 with open('economics.csv', 'a') as f:
     length = len(name_list)
     for i in range(length):
-        f.write(',hiroaki' + name_list[i] + ',' + str(eval_list[i]) + '\n')
+        f.write('経済,' + name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
 print(len(name_list))

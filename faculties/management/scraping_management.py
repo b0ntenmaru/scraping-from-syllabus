@@ -42,12 +42,12 @@ for link in links:
     # nameとsubject_evalをリストに格納する
     name_list.append(name)
     eval_list.append(subject_eval)
-    sleep(2)
+    sleep(1)
     print(name + '完了')
 with open('management.csv', 'a') as f:
     length = len(name_list)
     for i in range(length):
-        f.write(',hiroaki' + name_list[i] + ',' + str(eval_list[i]) + '\n')
+        f.write('経営,' + name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
 print(len(name_list))

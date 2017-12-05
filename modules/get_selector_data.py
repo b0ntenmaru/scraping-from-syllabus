@@ -9,7 +9,10 @@ def scraping_data(link):
 
     # 授業名を取得する
     tbody = soup.select('tr')
-    name = tbody[0].td.text
+    subject_name = tbody[0].td.text
+
+    # 担当教員を取得する
+    teacher_name = tbody[2].td.text
 
 
     # 成績評価方法を取得
@@ -19,6 +22,6 @@ def scraping_data(link):
     try:
         #成績評価はエラーでるから例外処理してある
         subject_eval = table.select('tr')[7].td.text
-        return (name, subject_eval)
+        return (subject_name, teacher_name, subject_eval)
     except:
-        return (name, None)
+        return (subject_name, teacher_name, None)

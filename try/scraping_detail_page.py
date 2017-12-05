@@ -4,8 +4,8 @@ import csv
 from time import sleep
 from bs4 import BeautifulSoup
 import os, sys
-sys.path.append('../../modules')
-from get_selector_data import scraping_data
+sys.path.append('../modules')
+from get_teachers_name import get_teachers_name
 
 
 # セッション関数でselect入力を保持する
@@ -14,7 +14,7 @@ r = s.post(
     'https://www.meijo-u.ac.jp/academics/syllabus/find/',
     data = {
         'data[find][fiscal_year]': ['2017'],
-        'data[find][faculty_id]': ['123']
+        'data[find][faculty_id]': ['119']
     }
 )
 
@@ -33,26 +33,23 @@ for name in subject_name:
 
 # scraping_data関数でインスタンスを作る
 
-subject_name_list = [] # 教科名
-teachers_name_list = [] # 教員
-eval_list = [] # 成績評価方法
+subject_list = []
+teachers_list = []
 for link in links:
-    subject_name, teacher_name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
+    subject, teacher = get_teachers_name('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
 
-    # subject_nameとteachers_nameとevalをリストに格納する
-    subject_name_list.append(subject_name)
-    teachers_name_list.append(teacher_name)
-    eval_list.append(subject_eval)
-    # sleep(1)
-    print(subject_name + '完了')
+    # nameとsubject_evalをリストに格納する
+    # subject_list.append(subject)
+    # teachers_list.append(teacher)
 
+    print(subject)
+    print(teacher)
 
-with open('human.csv', 'a') as f:
-    length = len(subject_name_list)
-    for i in range(length):
-        f.write('人間,' + subject_name_list[i] + ',' + teachers_name_list[i] + ',' + str(eval_list[i]) + '\n')
+# with open('../csv_files/economics.csv', 'a') as f:
+#     length = len(name_list)
+#     for i in range(length):
+#         f.write('経済,' + name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
-print(len(subject_name_list))
-print(len(teachers_name_list))
-print(len(eval_list))
+# print(len(name_list))
+# print(len(eval_list))

@@ -33,21 +33,26 @@ for name in subject_name:
 
 # scraping_data関数でインスタンスを作る
 
-name_list = []
-eval_list = []
+subject_name_list = [] # 教科名
+teachers_name_list = [] # 教員
+eval_list = [] # 成績評価方法
 for link in links:
-    name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
+    subject_name, teacher_name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
 
-    # nameとsubject_evalをリストに格納する
-    name_list.append(name)
+    # subject_nameとteachers_nameとevalをリストに格納する
+    subject_name_list.append(subject_name)
+    teachers_name_list.append(teacher_name)
     eval_list.append(subject_eval)
-    sleep(1)
-    print(name + '完了')
-with open('../csv_files/economics.csv', 'a') as f:
-    length = len(name_list)
+    # sleep(1)
+    print(subject_name + '完了')
+
+
+with open('economics.csv', 'a') as f:
+    length = len(subject_name_list)
     for i in range(length):
-        f.write('経済,' + name_list[i] + ',' + str(eval_list[i]) + '\n')
+        f.write('経済,' + subject_name_list[i] + ',' + teachers_name_list[i] + ',' + str(eval_list[i]) + '\n')
 
 print('完了')
-print(len(name_list))
+print(len(subject_name_list))
+print(len(teachers_name_list))
 print(len(eval_list))

@@ -43,7 +43,7 @@ for link in links:
     eval_list.append(subject_eval)
     sleep(1)
     print(name + '完了')
-with open('economics.csv', 'a') as f:
+with open('../csv_files/economics.csv', 'a') as f:
     length = len(name_list)
     for i in range(length):
         f.write('経済,' + name_list[i] + ',' + str(eval_list[i]) + '\n')

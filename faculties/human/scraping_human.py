@@ -50,7 +50,7 @@ for link in links:
 with open('human.csv', 'a') as f:
     length = len(subject_name_list)
     for i in range(length):
-        f.write('人間,' + subject_name_list[i] + ',' + teachers_name_list[i] + ',' + '"' + str(eval_list[i]) + '"' + '\n')
+        f.write('人間,' + '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
 
 print('完了')
 print(len(subject_name_list))

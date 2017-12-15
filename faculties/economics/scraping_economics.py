@@ -50,7 +50,7 @@ for link in links:
 with open('economics.csv', 'a') as f:
     length = len(subject_name_list)
     for i in range(length):
-        f.write('経済,' + subject_name_list[i] + ',' + teachers_name_list[i] + ',' + '"' + str(eval_list[i]) + '"' + '\n')
+        f.write('経済,' + '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
 
 print('完了')
 print(len(subject_name_list))

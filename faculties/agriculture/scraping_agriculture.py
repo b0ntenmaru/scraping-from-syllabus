@@ -14,7 +14,7 @@ r = s.post(
     'https://www.meijo-u.ac.jp/academics/syllabus/find/',
     data = {
         'data[find][fiscal_year]': ['2017'],
-        'data[find][faculty_id]': ['120']
+        'data[find][faculty_id]': ['121']
     }
 )
 
@@ -48,10 +48,10 @@ for link in links:
     print(subject_name + '完了')
 
 
-with open('engineering.csv', 'a') as f:
+with open('agriculture.csv', 'a') as f:
     length = len(subject_name_list)
     for i in range(length):
-        f.write('理工,' + '"' + department_list[i] + '"'+ ',' + '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
+        f.write('農,' + '"' + department_list[i] + '"'+ ',' + '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
 
 print('完了')
 print(len(department_list))

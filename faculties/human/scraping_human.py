@@ -32,14 +32,15 @@ for name in subject_name:
     links.append(data)
 
 # scraping_data関数でインスタンスを作る
-
+department_list = [] # 学科
 subject_name_list = [] # 教科名
 teachers_name_list = [] # 教員
 eval_list = [] # 成績評価方法
 for link in links:
-    subject_name, teacher_name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
+    department, subject_name, teacher_name, subject_eval = scraping_data('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
 
     # subject_nameとteachers_nameとevalをリストに格納する
+    department_list.append(department)
     subject_name_list.append(subject_name)
     teachers_name_list.append(teacher_name)
     eval_list.append(subject_eval)
@@ -50,9 +51,10 @@ for link in links:
 with open('human.csv', 'a') as f:
     length = len(subject_name_list)
     for i in range(length):
-        f.write('人間,' + '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
+        f.write('人間,' + '"' + department_list[i] + '"'+ ','+  '"' + subject_name_list[i] + '"' + ',' + '"' + teachers_name_list[i] + '"' + ',' + '"' + str(eval_list[i]) + '"' + '\n')
 
 print('完了')
+print(len(department_list))
 print(len(subject_name_list))
 print(len(teachers_name_list))
 print(len(eval_list))

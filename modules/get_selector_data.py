@@ -6,6 +6,9 @@ from bs4 import BeautifulSoup
 def scraping_data(link):
     url = requests.get(link)
     soup = BeautifulSoup(url.content, 'html.parser')
+    # 学科を取得する
+    tbody = soup.select('tr')
+    department = tbody[1].td.text
 
     # 授業名を取得する
     tbody = soup.select('tr')
@@ -22,6 +25,6 @@ def scraping_data(link):
     try:
         #成績評価はエラーでるから例外処理してある
         subject_eval = table.select('tr')[7].td.text
-        return (subject_name, teacher_name, subject_eval)
+        return (department, subject_name, teacher_name, subject_eval)
     except:
-        return (subject_name, teacher_name, None)
+        return (department, subject_name, teacher_name, None)

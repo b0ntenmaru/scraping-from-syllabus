@@ -5,7 +5,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 import os, sys
 sys.path.append('../modules')
-from get_teachers_name import get_teachers_name
+from get_info import get_info
 
 
 # セッション関数でselect入力を保持する
@@ -33,23 +33,10 @@ for name in subject_name:
 
 # scraping_data関数でインスタンスを作る
 
-subject_list = []
-teachers_list = []
+department_list = []
+unit_number_list = []
 for link in links:
-    subject, teacher = get_teachers_name('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
-
-    # nameとsubject_evalをリストに格納する
-    # subject_list.append(subject)
-    # teachers_list.append(teacher)
-
-    print(subject)
-    print(teacher)
-
-# with open('../csv_files/economics.csv', 'a') as f:
-#     length = len(name_list)
-#     for i in range(length):
-#         f.write('経済,' + name_list[i] + ',' + str(eval_list[i]) + '\n')
+    department = get_info('https://www.meijo-u.ac.jp/academics/syllabus/find/' + link)
+    print(department)
 
 print('完了')
-# print(len(name_list))
-# print(len(eval_list))
